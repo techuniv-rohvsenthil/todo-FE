@@ -3,7 +3,7 @@ import './NoteCard.css';
 // import propTypes from 'prop-types';
 
 
-function NoteCard() {
+function NoteCard() { // default props, json file
   return (
     <div className="NoteCard">
       This is a Note to remind you!

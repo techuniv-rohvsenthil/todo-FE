@@ -13,24 +13,24 @@ class App extends React.Component {
     };
   }
 
-CreateNewClick = () => {
-    this.setState({
-      isCreateNew: true,
-    });
-  }
+CreateNewClick = () => { // camel casing
+  this.setState({
+    isCreateNew: true,
+  });
+}
 
-  render() {
-    const { isCreateNew } = this.state;
-    return (
-      <div className="App">
-        <ProfileBar />
-        { isCreateNew === false ? (
-            <HomePage  CreateNewClick={this.CreateNewClick} />
-        )
+render() {
+  const { isCreateNew } = this.state;
+  return (
+    <div className="App">
+      <ProfileBar />
+      { !isCreateNew ? (
+        <HomePage CreateNewClick={this.CreateNewClick} />
+      )
         : <AddNote /> }
-      </div>
-    );
-  }
+    </div>
+  );
+}
 }
 
 export default App;

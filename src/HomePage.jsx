@@ -6,7 +6,7 @@ import CreateNew from './CreateNew';
 
 import './HomePage.css';
 
-function HomePage(props) {
+function HomePage(props) { // arrow function, remove br, name of button functionality
   const { CreateNewClick } = props;
   return (
     <div className="HomePage">

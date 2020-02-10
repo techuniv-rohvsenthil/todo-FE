@@ -4,10 +4,10 @@ import propTypes from 'prop-types';
 
 
 function CreateNew(props) {
-  const { CreateNewClick } = props;
+  const { onClick } = props;
   return (
     <div>
-      <button className="CreateNew" type="button" onClick={CreateNewClick}>
+      <button className="CreateNew" type="button" onClick={onClick}>
         CREATE NEW
       </button>
     </div>
@@ -15,7 +15,7 @@ function CreateNew(props) {
 }
 
 CreateNew.propTypes = {
-  CreateNewClick: propTypes.func.isRequired,
+  onClick: propTypes.func.isRequired,
 };
 
 export default CreateNew;
