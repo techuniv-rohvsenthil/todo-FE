@@ -10,28 +10,34 @@ class App extends React.Component {
     super(props);
     this.state = {
       isCreateNew: false,
+      listOfNotes: [],
     };
   }
 
 CreateNewClick = () => { // camel casing
+  const { listOfNotes } = this.state;
   this.setState({
+    listOfNotes: [...listOfNotes],
     isCreateNew: true,
   });
 }
 
 AddTypedNote = () => { // camel casing
+  const { listOfNotes } = this.state;
+  const noteDetails = document.getElementById('note-description').value;
   this.setState({
+    listOfNotes: [...listOfNotes, noteDetails],
     isCreateNew: false,
   });
 }
 
 render() {
-  const { isCreateNew } = this.state;
+  const { isCreateNew, listOfNotes } = this.state;
   return (
     <div className="App">
       <ProfileBar />
       { !isCreateNew ? (
-        <HomePage CreateNewClick={this.CreateNewClick} />
+        <HomePage CreateNewClick={this.CreateNewClick} noteList={listOfNotes} />
       )
         : <AddNote AddTypedNote={this.AddTypedNote} /> }
     </div>

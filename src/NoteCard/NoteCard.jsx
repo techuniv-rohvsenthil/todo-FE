@@ -1,14 +1,20 @@
 import React from 'react';
 import './NoteCard.css';
-// import propTypes from 'prop-types';
+import propTypes from 'prop-types';
 
 
-function NoteCard() { // default props, json file
+function NoteCard(props) { // default props, json file
+  const { text } = props;
   return (
+
     <div className="NoteCard">
-      This is a Note to remind you!
+      {text}
     </div>
   );
 }
+
+NoteCard.propTypes = {
+  text: propTypes.string.isRequired,
+};
 
 export default NoteCard;

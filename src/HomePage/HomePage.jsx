@@ -7,7 +7,7 @@ import CreateNew from '../Button/CreateNew';
 import './HomePage.css';
 
 function HomePage(props) { // arrow function, remove br, name of button functionality
-  const { CreateNewClick } = props;
+  const { CreateNewClick, noteList } = props;
   return (
     <div className="HomePage">
       <div className="title">
@@ -15,7 +15,7 @@ function HomePage(props) { // arrow function, remove br, name of button function
       </div>
       <br />
       <br />
-      <NoteContainer />
+      <NoteContainer noteList={noteList} />
       <br />
       <CreateNew onClick={CreateNewClick} />
     </div>
@@ -24,7 +24,7 @@ function HomePage(props) { // arrow function, remove br, name of button function
 
 HomePage.propTypes = {
   CreateNewClick: propTypes.func.isRequired,
-
+  noteList: propTypes.node.isRequired,
 };
 
 
