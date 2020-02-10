@@ -1,0 +1,10 @@
+.NoteCard{
+    display: flex;
+    height: 3rem;
+    width: inherit;
+    padding-left: 3rem;
+    justify-content: flex-start;
+    align-items: center;
+    color: steelblue;
+    background-color: white;
+}

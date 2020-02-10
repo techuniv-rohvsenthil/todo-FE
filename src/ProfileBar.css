@@ -1,0 +1,8 @@
+.ProfileBar {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    background-color: white;
+    flex: 1;
+  }
+  
