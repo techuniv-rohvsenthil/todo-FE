@@ -31,12 +31,18 @@ AddTypedNote = () => {
   });
 }
 
-deleteNote = () => {
-
+deleteNote = (text) => {
+  const { listOfNotes } = this.state;
+  const noteList = [...listOfNotes];
+  const index = noteList.indexOf(text);
+  noteList.splice(index, 1);
+  this.setState({
+    listOfNotes: [...noteList],
+  });
 }
 
 render() {
-  const { isCreateNew, listOfNotes, deleteNote } = this.state;
+  const { isCreateNew, listOfNotes } = this.state;
   return (
     <div className="App">
       <ProfileBar />
@@ -44,7 +50,7 @@ render() {
         <HomePage
           CreateNewClick={this.CreateNewClick}
           noteList={listOfNotes}
-          deleteNote={deleteNote}
+          deleteNote={(text) => this.deleteNote(text)}
         />
       )
         : <AddNote AddTypedNote={this.AddTypedNote} /> }

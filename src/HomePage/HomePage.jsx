@@ -13,7 +13,7 @@ const HomePage = (props) => {
       <div className="title">
         ALL TODOs
       </div>
-      <NoteContainer noteList={noteList} deleteNote={deleteNote} />
+      <NoteContainer noteList={noteList} deleteNote={(text) => deleteNote(text)} />
       <Button text="CREATE NEW" onClick={CreateNewClick} />
     </div>
   );

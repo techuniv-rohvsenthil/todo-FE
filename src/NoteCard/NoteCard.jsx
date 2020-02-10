@@ -9,7 +9,7 @@ function NoteCard(props) {
   return (
     <div className="NoteCard">
       {text}
-      <Button text="DONE" onClick={deleteNote} />
+      <Button text="DONE" onClick={() => deleteNote(text)} />
     </div>
   );
 }
