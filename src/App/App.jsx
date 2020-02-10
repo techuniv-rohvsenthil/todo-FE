@@ -1,7 +1,7 @@
 import React from 'react';
-import HomePage from './HomePage';
-import ProfileBar from './ProfileBar';
-import AddNote from './AddNote';
+import HomePage from '../HomePage/HomePage';
+import ProfileBar from '../ProfileBar/ProfileBar';
+import AddNote from '../AddNote/AddNote';
 import './App.css';
 
 
