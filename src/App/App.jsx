@@ -31,13 +31,21 @@ AddTypedNote = () => {
   });
 }
 
+deleteNote = () => {
+
+}
+
 render() {
-  const { isCreateNew, listOfNotes } = this.state;
+  const { isCreateNew, listOfNotes, deleteNote } = this.state;
   return (
     <div className="App">
       <ProfileBar />
       { !isCreateNew ? (
-        <HomePage CreateNewClick={this.CreateNewClick} noteList={listOfNotes} />
+        <HomePage
+          CreateNewClick={this.CreateNewClick}
+          noteList={listOfNotes}
+          deleteNote={deleteNote}
+        />
       )
         : <AddNote AddTypedNote={this.AddTypedNote} /> }
     </div>

@@ -1,20 +1,20 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import NoteContainer from '../NoteContainer/NoteContainer';
-import CreateNew from '../Button/CreateNew';
+import Button from '../Button/Button';
 
 
 import './HomePage.css';
 
 const HomePage = (props) => {
-  const { CreateNewClick, noteList } = props;
+  const { CreateNewClick, noteList, deleteNote } = props;
   return (
     <div className="HomePage">
       <div className="title">
         ALL TODOs
       </div>
-      <NoteContainer noteList={noteList} />
-      <CreateNew onClick={CreateNewClick} />
+      <NoteContainer noteList={noteList} deleteNote={deleteNote} />
+      <Button text="CREATE NEW" onClick={CreateNewClick} />
     </div>
   );
 };
@@ -22,6 +22,7 @@ const HomePage = (props) => {
 HomePage.propTypes = {
   CreateNewClick: propTypes.func.isRequired,
   noteList: propTypes.node.isRequired,
+  deleteNote: propTypes.func.isRequired,
 };
 
 

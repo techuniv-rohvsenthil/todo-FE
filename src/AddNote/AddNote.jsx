@@ -1,19 +1,49 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import CreateNew from '../Button/CreateNew';
+import Button from '../Button/Button';
 
 import './AddNote.css';
 
-const AddNote = (props) => {
-  const { AddTypedNote } = props;
-  return (
-    <div className="AddNote">
-      <textarea id="note-description" maxLength="100" rows="8" />
-      Characters left: 0/100
-      <CreateNew onClick={AddTypedNote} />
-    </div>
-  );
-};
+// const charCount = () => document.getElementById('note-description').value.length;
+
+class AddNote extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      charCount: 0,
+    };
+
+    // const onType = () => {
+    //   const { charCount } = this.state;
+    //   this.setState({
+    //     charCount: charCount + 1,
+    //   });
+    // };
+
+    // const charCounter = () => {
+    //   const noteText = document.getElementById('note-description').value.length;
+    //   this.setState({
+    //     charCount: noteText,
+    //   });
+    //   return noteText;
+    // };
+  }
+
+  render() {
+    const { AddTypedNote } = this.props;
+    const { charCount } = this.state;
+    return (
+      <div className="AddNote">
+        <textarea id="note-description" maxLength="100" rows="8" />
+        Characters left:
+        {' '}
+        {charCount}
+        /100
+        <Button text="ADD NOTE" onClick={AddTypedNote} />
+      </div>
+    );
+  }
+}
 
 AddNote.propTypes = {
   AddTypedNote: propTypes.func.isRequired,

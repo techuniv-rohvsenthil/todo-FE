@@ -1,9 +1,10 @@
 .NoteCard{
     display: flex;
+    flex-direction: row;
     height: 3rem;
     width: inherit;
     padding-left: 3rem;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     color: steelblue;
     margin:0.5rem;
