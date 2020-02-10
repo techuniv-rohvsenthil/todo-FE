@@ -19,6 +19,12 @@ CreateNewClick = () => { // camel casing
   });
 }
 
+AddTypedNote = () => { // camel casing
+  this.setState({
+    isCreateNew: false,
+  });
+}
+
 render() {
   const { isCreateNew } = this.state;
   return (
@@ -27,7 +33,7 @@ render() {
       { !isCreateNew ? (
         <HomePage CreateNewClick={this.CreateNewClick} />
       )
-        : <AddNote /> }
+        : <AddNote AddTypedNote={this.AddTypedNote} /> }
     </div>
   );
 }
