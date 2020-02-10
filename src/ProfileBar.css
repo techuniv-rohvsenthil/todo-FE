@@ -1,8 +1,19 @@
 .ProfileBar {
     display: flex;
-    flex-direction: row;
-    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: white;
     flex: 1;
+    color: lightskyblue;
+    border-style: solid;
+    margin: 0.5rem;
+    font-size: 1.5rem;
+  }
+
+  .img{
+    height: 8rem;
+    width: 8rem;
+    border-radius: 50%;
   }
   
