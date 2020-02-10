@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import HomePage from '../HomePage/HomePage';
 import ProfileBar from '../ProfileBar/ProfileBar';
 import AddNote from '../AddNote/AddNote';
@@ -13,6 +14,14 @@ class App extends React.Component {
       listOfNotes: [],
     };
   }
+
+componentDidMount = async () => {
+  const response = await axios.get('http://localhost:8080/notes');
+  const noteList = response.data.map((note) => note.description);
+  this.setState({
+    listOfNotes: [...noteList],
+  });
+}
 
 CreateNewClick = () => {
   const { listOfNotes } = this.state;
