@@ -3,7 +3,7 @@ import './CreateNew.css';
 import propTypes from 'prop-types';
 
 
-function CreateNew(props) {
+const CreateNew = (props) => {
   const { onClick } = props;
   return (
     <div>
@@ -12,7 +12,7 @@ function CreateNew(props) {
       </button>
     </div>
   );
-}
+};
 
 CreateNew.propTypes = {
   onClick: propTypes.func.isRequired,

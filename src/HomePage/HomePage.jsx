@@ -6,21 +6,18 @@ import CreateNew from '../Button/CreateNew';
 
 import './HomePage.css';
 
-function HomePage(props) { // arrow function, remove br, name of button functionality
+const HomePage = (props) => {
   const { CreateNewClick, noteList } = props;
   return (
     <div className="HomePage">
       <div className="title">
         ALL TODOs
       </div>
-      <br />
-      <br />
       <NoteContainer noteList={noteList} />
-      <br />
       <CreateNew onClick={CreateNewClick} />
     </div>
   );
-}
+};
 
 HomePage.propTypes = {
   CreateNewClick: propTypes.func.isRequired,

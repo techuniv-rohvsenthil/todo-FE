@@ -4,19 +4,16 @@ import CreateNew from '../Button/CreateNew';
 
 import './AddNote.css';
 
-function AddNote(props) { // change to arrow function, remove br tag
+const AddNote = (props) => {
   const { AddTypedNote } = props;
   return (
     <div className="AddNote">
       <textarea id="note-description" maxLength="100" rows="8" />
       Characters left: 0/100
-      <br />
-      {' '}
-      <br />
       <CreateNew onClick={AddTypedNote} />
     </div>
   );
-}
+};
 
 AddNote.propTypes = {
   AddTypedNote: propTypes.func.isRequired,

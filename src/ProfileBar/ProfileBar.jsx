@@ -1,7 +1,7 @@
 import React from 'react';
 import './ProfileBar.css';
 
-function currentTime() { // change to arrow functions
+const currentTime = () => {
   const d = new Date();
   let hours = d.getHours();
   let minutes = d.getMinutes();
@@ -11,33 +11,27 @@ function currentTime() { // change to arrow functions
   minutes = minutes < 10 ? `0${minutes}` : minutes;
   const strTime = `${hours}:${minutes} ${ampm}`;
   return strTime;
-}
+};
 
-function currentDate() {
+const currentDate = () => {
   const d = new Date();
   const day = d.getDate();
   const month = d.getMonth();
   const year = d.getFullYear();
-  const strDate = `${day} / ${month} /${year}`;
+  const strDate = `${day} / ${month + 1} /${year}`;
   return strDate;
-}
+};
 
-function ProfileBar() { // change to arrow function, remove br tag
-  return (
-    <div className="ProfileBar">
-      <img className="img" src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg" alt="W3Schools.com" />
+const ProfileBar = () => (
+  <div className="ProfileBar">
+    <img className="img" src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg" alt="W3Schools.com" />
+    HI ROHINI
+    <div className="dateAndTime">
+      {currentTime()}
+      {' '}
       <br />
-      HI ROHINI
-      <br />
-      <br />
-      <div className="dateAndTime">
-        {currentTime()}
-        {' '}
-        <br />
-        {currentDate()}
-      </div>
+      {currentDate()}
     </div>
-  );
-}
-
+  </div>
+);
 export default ProfileBar;

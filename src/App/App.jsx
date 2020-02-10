@@ -14,7 +14,7 @@ class App extends React.Component {
     };
   }
 
-CreateNewClick = () => { // camel casing
+CreateNewClick = () => {
   const { listOfNotes } = this.state;
   this.setState({
     listOfNotes: [...listOfNotes],
@@ -22,7 +22,7 @@ CreateNewClick = () => { // camel casing
   });
 }
 
-AddTypedNote = () => { // camel casing
+AddTypedNote = () => {
   const { listOfNotes } = this.state;
   const noteDetails = document.getElementById('note-description').value;
   this.setState({
