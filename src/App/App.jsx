@@ -34,6 +34,15 @@ CreateNewClick = () => {
 AddTypedNote = () => {
   const { listOfNotes } = this.state;
   const noteDetails = document.getElementById('note-description').value;
+  const http = new XMLHttpRequest();
+  const url = 'http://localhost:8080/notes';
+  const payload = {
+    title: 'new note',
+    description: noteDetails,
+  };
+  http.open('POST', url);
+  http.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+  http.send(JSON.stringify(payload));
   this.setState({
     listOfNotes: [...listOfNotes, noteDetails],
     isCreateNew: false,
