@@ -13,7 +13,7 @@ const HomePage = (props) => {
       <div className="title">
         ALL TODOs
       </div>
-      <NoteContainer noteList={noteList} deleteNote={(text) => deleteNote(text)} />
+      <NoteContainer noteList={noteList} deleteNote={(noteId) => deleteNote(noteId)} />
       <Button text="CREATE NEW" onClick={CreateNewClick} />
     </div>
   );
@@ -21,7 +21,7 @@ const HomePage = (props) => {
 
 HomePage.propTypes = {
   CreateNewClick: propTypes.func.isRequired,
-  noteList: propTypes.node.isRequired,
+  noteList: propTypes.arrayOf(propTypes.object).isRequired,
   deleteNote: propTypes.func.isRequired,
 };
 

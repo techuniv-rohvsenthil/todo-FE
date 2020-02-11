@@ -16,10 +16,9 @@ class App extends React.Component {
   }
 
 componentDidMount = async () => {
-  const response = await axios.get('http://localhost:8080/notes');
-  const noteList = response.data.map((note) => note.description);
+  const noteList = await axios.get('http://localhost:8080/notes');
   this.setState({
-    listOfNotes: [...noteList],
+    listOfNotes: [...noteList.data],
   });
 }
 
@@ -31,31 +30,27 @@ CreateNewClick = () => {
   });
 }
 
-AddTypedNote = () => {
+AddTypedNote = async () => {
   const { listOfNotes } = this.state;
   const noteDetails = document.getElementById('note-description').value;
-  const http = new XMLHttpRequest();
   const url = 'http://localhost:8080/notes';
   const payload = {
-    title: 'new note',
+    title: 'New Note',
     description: noteDetails,
   };
-  http.open('POST', url);
-  http.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-  http.send(JSON.stringify(payload));
+  const res = await axios.post(url, payload);
   this.setState({
-    listOfNotes: [...listOfNotes, noteDetails],
+    listOfNotes: [...listOfNotes, res.data],
     isCreateNew: false,
   });
 }
 
-deleteNote = (text) => {
+deleteNote = (noteId) => {
   const { listOfNotes } = this.state;
   const noteList = [...listOfNotes];
-  const index = noteList.indexOf(text);
-  noteList.splice(index, 1);
+  const res = noteList.filter((obj) => obj.noteId !== noteId);
   this.setState({
-    listOfNotes: [...noteList],
+    listOfNotes: [...res],
   });
 }
 
@@ -68,7 +63,7 @@ render() {
         <HomePage
           CreateNewClick={this.CreateNewClick}
           noteList={listOfNotes}
-          deleteNote={(text) => this.deleteNote(text)}
+          deleteNote={(noteId) => this.deleteNote(noteId)}
         />
       )
         : <AddNote AddTypedNote={this.AddTypedNote} /> }
