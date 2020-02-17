@@ -7,34 +7,14 @@ import HomePage from '../HomePage/HomePage';
 import ProfileBar from '../ProfileBar/ProfileBar';
 import AddNote from '../AddNote/AddNote';
 import './App.css';
+import useInput from '../hooks/useInput';
 
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isCreateNew: false,
-      listOfNotes: [],
-    };
-  }
+const App = () => {
+  const [todo, setTodo] = useInput([]);
 
-  componentDidMount = async () => {
-    const noteList = await axios.get('http://localhost:8080/notes');
-    this.setState({
-      listOfNotes: [...noteList.data],
-    });
-  }
-
-  CreateNewClick = () => {
-    const { listOfNotes } = this.state;
-    this.setState({
-      listOfNotes: [...listOfNotes],
-      isCreateNew: true,
-    });
-  }
-
-  AddTypedNote = async () => {
-    const { listOfNotes } = this.state;
+  const AddTypedNote = async () => {
+    const listOfNotes = todo;
     const noteDetails = document.getElementById('note-description').value;
     const url = 'http://localhost:8080/notes';
     const payload = {
@@ -42,53 +22,45 @@ class App extends React.Component {
       description: noteDetails,
     };
     const res = await axios.post(url, payload);
-    this.setState({
-      listOfNotes: [...listOfNotes, res.data],
-      isCreateNew: false,
-    });
-  }
-
-  deleteNote = (noteId) => {
-    const { listOfNotes } = this.state;
-    const noteList = [...listOfNotes];
-    const res = noteList.filter((obj) => obj.noteId !== noteId);
-    this.setState({
-      listOfNotes: [...res],
-    });
-  }
-
-  render() {
-    const { listOfNotes } = this.state;
-    return (
-      <div className="App">
-        <ProfileBar />
-        <Router>
-          <Switch>
-            <Route exact path="/">
-              <HomePage
-                CreateNewClick={this.CreateNewClick}
-                noteList={listOfNotes}
-                deleteNote={(noteId) => this.deleteNote(noteId)}
-              />
-            </Route>
-            <Route exact path="/new">
-              <AddNote AddTypedNote={this.AddTypedNote} />
-            </Route>
-            <Route exact path="*">
-              <Redirect from="*" to="/" />
-              <Route path="/">
-                <HomePage
-                  CreateNewClick={this.CreateNewClick}
-                  noteList={listOfNotes}
-                  deleteNote={(noteId) => this.deleteNote(noteId)}
-                />
-              </Route>
-            </Route>
-          </Switch>
-        </Router>
-      </div>
+    setTodo(
+      [...listOfNotes, res.data],
     );
-  }
-}
+  };
+
+  const deleteNote = async (noteId) => {
+    const listOfNotes = todo;
+    const noteList = [...listOfNotes];
+    await axios({
+      method: 'DELETE',
+      url: `http://localhost:8080/notes/${noteId}`,
+    });
+    const res = noteList.filter((obj) => obj.noteId !== noteId);
+    setTodo([...res]);
+  };
+
+  const listOfNotes = todo;
+  return (
+    <div className="App">
+      <ProfileBar />
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <HomePage
+              noteList={listOfNotes}
+              deleteNote={(noteId) => deleteNote(noteId)}
+            />
+          </Route>
+          <Route exact path="/new">
+            <AddNote AddTypedNote={AddTypedNote} />
+          </Route>
+          <Route exact path="*">
+            <Redirect from="*" to="/" />
+            <Route path="/" />
+          </Route>
+        </Switch>
+      </Router>
+    </div>
+  );
+};
 
 export default App;

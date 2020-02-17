@@ -8,7 +8,7 @@ import Button from '../Button/Button';
 import './HomePage.css';
 
 const HomePage = (props) => {
-  const { CreateNewClick, noteList, deleteNote } = props;
+  const { noteList, deleteNote } = props;
   return (
     <div className="HomePage">
       <div className="title">
@@ -16,14 +16,13 @@ const HomePage = (props) => {
       </div>
       <NoteContainer noteList={noteList} deleteNote={(noteId) => deleteNote(noteId)} />
       <Link to="/new">
-        <Button text="CREATE NEW" onClick={CreateNewClick} />
+        <Button text="CREATE NEW" />
       </Link>
     </div>
   );
 };
 
 HomePage.propTypes = {
-  CreateNewClick: propTypes.func.isRequired,
   noteList: propTypes.arrayOf(propTypes.object).isRequired,
   deleteNote: propTypes.func.isRequired,
 };

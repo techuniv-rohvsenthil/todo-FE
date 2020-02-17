@@ -1,18 +1,22 @@
 import React from 'react';
 import './NoteCard.css';
 import propTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Button from '../Button/Button';
 
 
-function NoteCard(props) {
+const NoteCard = (props) => {
   const { text, deleteNote, id } = props;
+  const path = `/${id}`;
   return (
     <div className="NoteCard">
-      {text}
+      <Link to={path}>
+        {text}
+      </Link>
       <Button text="DONE" onClick={() => deleteNote(id)} />
     </div>
   );
-}
+};
 
 NoteCard.propTypes = {
   text: propTypes.string.isRequired,
