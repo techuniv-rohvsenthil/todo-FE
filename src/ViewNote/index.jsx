@@ -9,9 +9,13 @@ function useQuery() {
 }
 
 function ViewNote(props) {
-  const { noteList } = props;
+  const { noteList, listLoadComplete } = props;
   const query = useQuery();
   const noteId = query.get('noteID');
+  if (listLoadComplete === null) {
+    return <div>Loading ...</div>;
+  }
+
   const viewTodo = noteList.filter((todo) => todo.noteId === noteId);
   return (
     viewTodo.length !== 0 ? (
@@ -33,6 +37,7 @@ function ViewNote(props) {
       )
   );
 }
+
 
 ViewNote.propTypes = {
   noteList: propTypes.arrayOf(propTypes.object).isRequired,

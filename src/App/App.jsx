@@ -12,7 +12,7 @@ import ViewNote from '../ViewNote';
 
 
 const App = () => {
-  const [todo, setTodo] = useInput([]);
+  const [todo, setTodo, listLoadComplete] = useInput([]);
 
   const AddTypedNote = async () => {
     const listOfNotes = todo;
@@ -57,6 +57,7 @@ const App = () => {
           <Route exact path="/view">
             <ViewNote
               noteList={listOfNotes}
+              listNoteComplete={listLoadComplete}
             />
           </Route>
           <Route exact path="*">
