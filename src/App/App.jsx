@@ -8,6 +8,7 @@ import ProfileBar from '../ProfileBar/ProfileBar';
 import AddNote from '../AddNote/AddNote';
 import './App.css';
 import useInput from '../hooks/useInput';
+import ViewNote from '../ViewNote';
 
 
 const App = () => {
@@ -52,6 +53,11 @@ const App = () => {
           </Route>
           <Route exact path="/new">
             <AddNote AddTypedNote={AddTypedNote} />
+          </Route>
+          <Route exact path="/view">
+            <ViewNote
+              noteList={listOfNotes}
+            />
           </Route>
           <Route exact path="*">
             <Redirect from="*" to="/" />

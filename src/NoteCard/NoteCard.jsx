@@ -7,7 +7,7 @@ import Button from '../Button/Button';
 
 const NoteCard = (props) => {
   const { text, deleteNote, id } = props;
-  const path = `/${id}`;
+  const path = `/view?noteID=${id}`;
   return (
     <div className="NoteCard">
       <Link to={path}>

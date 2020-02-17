@@ -9,7 +9,7 @@ const useInput = (defaultValue) => {
       setTodo(response.data);
     };
     someFunc();
-  }, [todo]);
+  }, []);
   return [todo, setTodo];
 };
 export default useInput;
