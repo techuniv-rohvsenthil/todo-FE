@@ -1,5 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import NoteContainer from '../NoteContainer/NoteContainer';
 import Button from '../Button/Button';
 
@@ -14,7 +15,9 @@ const HomePage = (props) => {
         ALL TODOs
       </div>
       <NoteContainer noteList={noteList} deleteNote={(noteId) => deleteNote(noteId)} />
-      <Button text="CREATE NEW" onClick={CreateNewClick} />
+      <Link to="/new">
+        <Button text="CREATE NEW" onClick={CreateNewClick} />
+      </Link>
     </div>
   );
 };

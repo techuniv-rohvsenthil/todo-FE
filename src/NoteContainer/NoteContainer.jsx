@@ -5,8 +5,13 @@ import './NoteContainer.css';
 
 const NoteContainer = (props) => {
   const { noteList, deleteNote } = props;
-  const notes = [...noteList].reverse().map((note, i) => (
-    <NoteCard key={i} text={note.description} id={note.noteId} deleteNote={(noteId) => deleteNote(noteId)} />
+  const notes = [...noteList].reverse().map((note) => (
+    <NoteCard
+      key={note.noteId}
+      text={note.description}
+      id={note.noteId}
+      deleteNote={(noteId) => deleteNote(noteId)}
+    />
   ));
   return (
     <div className="NoteContainer">
