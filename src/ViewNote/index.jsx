@@ -41,6 +41,7 @@ function ViewNote(props) {
 
 ViewNote.propTypes = {
   noteList: propTypes.arrayOf(propTypes.object).isRequired,
+  listLoadComplete: propTypes.bool.isRequired,
 };
 
 

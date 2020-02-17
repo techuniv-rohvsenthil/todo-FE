@@ -57,7 +57,7 @@ const App = () => {
           <Route exact path="/view">
             <ViewNote
               noteList={listOfNotes}
-              listNoteComplete={listLoadComplete}
+              listLoadComplete={listLoadComplete}
             />
           </Route>
           <Route exact path="*">
