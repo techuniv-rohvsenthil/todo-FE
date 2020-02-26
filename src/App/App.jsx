@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import React from 'react';
 import axios from 'axios';
 import {
@@ -9,7 +10,7 @@ import AddNote from '../AddNote/AddNote';
 import './App.css';
 import useInput from '../hooks/useInput';
 import ViewNote from '../ViewNote';
-
+dotenv.config();
 
 const App = () => {
   const [todo, setTodo, listLoadComplete] = useInput([]);
@@ -17,7 +18,7 @@ const App = () => {
   const AddTypedNote = async () => {
     const listOfNotes = todo;
     const noteDetails = document.getElementById('note-description').value;
-    const url = 'http://localhost:8080/notes';
+    const url = `${process.env.REACT_APP_URL}/notes`;
     const payload = {
       title: 'New Note',
       description: noteDetails,
@@ -33,7 +34,7 @@ const App = () => {
     const noteList = [...listOfNotes];
     await axios({
       method: 'DELETE',
-      url: `http://localhost:8080/notes/${noteId}`,
+      url: `${process.env.REACT_APP_URL}/notes/${noteId}`,
     });
     const res = noteList.filter((obj) => obj.noteId !== noteId);
     setTodo([...res]);
