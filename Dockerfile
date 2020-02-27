@@ -1,12 +1,14 @@
 FROM node 
 WORKDIR /app
 COPY . .
-EXPOSE 5000
+EXPOSE 80
 RUN npm install
-RUN REACT_APP_URL=http://localhost npm run build
+ARG REACT_APP_URL
+ENV REACT_APP_URL $REACT_APP_URL
+RUN npm run build
 RUN npm install -g serve
 
-CMD ["serve", "-s", "build"]
+CMD ["serve", "-l", "80", "-s", "build"]
 
 # CMD ["npm", "start"]
 
